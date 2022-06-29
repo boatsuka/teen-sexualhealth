@@ -21,13 +21,13 @@ export class User extends BaseEntity {
   @Column({ length: 30, default: userRoles.NORMAL_ROLE })
   user_role: string;
 
-  @Column({default: 0})
+  @Column({ default: 0 })
   teacher_id: string;
 
   @Column({ length: 100 })
   user_full_name: string;
 
-  @Column({default: 0})
+  @Column({ default: 0 })
   school_id: string;
 
   @Column({ length: 100 })
