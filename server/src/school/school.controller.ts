@@ -2,17 +2,19 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { SchoolService } from './school.service';
 import { CreateSchoolDto } from './dto/create-school.dto';
 import { UpdateSchoolDto } from './dto/update-school.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('school')
 @Controller('school')
 export class SchoolController {
-  constructor(private readonly schoolService: SchoolService) { }
+  constructor(private readonly schoolService: SchoolService) {}
 
-  @Post()
+  @Post('create')
   create(@Body() createSchoolDto: CreateSchoolDto) {
     return this.schoolService.create(createSchoolDto);
   }
 
-  @Get()
+  @Get('all')
   findAll() {
     return this.schoolService.findAll();
   }

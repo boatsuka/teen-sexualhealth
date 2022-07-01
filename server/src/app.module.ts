@@ -2,11 +2,16 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
-import { SchoolModule } from './school/school.module';
 import { StudentModule } from './student/student.module';
+import { SchoolModule } from './school/school.module';
+import { TeacherModule } from './teacher/teacher.module';
+
 
 @Module({
   imports: [
+    UserModule,
+    AuthModule,
+    StudentModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -14,15 +19,15 @@ import { StudentModule } from './student/student.module';
       username: 'sexualhealth',
       password: '%sexualhealth00123@',
       database: 'sexualhealth',
-      entities: [__dirname + 'src/**/*.entity.{ts,js}'],
+      logging: false,
       synchronize: true,
+      autoLoadEntities: true,
+      entities: [__dirname + '../**/*.entity{.ts,.js}'],
     }),
-    UserModule,
-    AuthModule,
     SchoolModule,
-    StudentModule,
+    TeacherModule,
   ],
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule { }

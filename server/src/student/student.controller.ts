@@ -2,12 +2,14 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { StudentService } from './student.service';
 import { CreateStudentDto } from './dto/create-student.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('student')
 @Controller('student')
 export class StudentController {
   constructor(private readonly studentService: StudentService) {}
 
-  @Post()
+  @Post('create')
   create(@Body() createStudentDto: CreateStudentDto) {
     return this.studentService.create(createStudentDto);
   }
@@ -21,6 +23,12 @@ export class StudentController {
   findOne(@Param('id') id: string) {
     return this.studentService.findOne(+id);
   }
+
+  @Get('teacherByStudent/:id')
+  teacherByStudent(@Param('id') id: number) {
+    return this.studentService.teacherBystudent(id);
+  }
+  
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateStudentDto: UpdateStudentDto) {
