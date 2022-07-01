@@ -1,10 +1,15 @@
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.enableCors();
+  await app.enableCors({
+    origin: 'http://147.50.231.136',
+    credentials: true,
+  });
+  await app.use(cookieParser());
   await app.setGlobalPrefix('api');
 
   const options = new DocumentBuilder()

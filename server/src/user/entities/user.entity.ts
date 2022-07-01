@@ -4,7 +4,9 @@ import {
   BaseEntity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  BeforeInsert,
 } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 import { userRoles } from '../../utils/role.enum'
 
 @Entity()
@@ -44,4 +46,10 @@ export class User extends BaseEntity {
 
   @UpdateDateColumn()
   user_last_update: Date;
+
+  @BeforeInsert()
+  async setPassword() {
+    const salt = await bcrypt.genSalt();
+    this.user_password = await bcrypt.hash(this.user_password, salt);
+  }
 }
