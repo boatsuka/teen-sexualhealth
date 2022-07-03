@@ -1,45 +1,29 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import React from "react";
+import { Box, createTheme, ThemeProvider } from "@mui/material";
+import { Routes, Route } from "react-router-dom";
+
+import LoginPage from "./pages/login";
+import RegisterPage from "./pages/register";
+import DashboardPage from "./pages/dashboard/dashboard";
+
+const theme = createTheme({
+  typography: {
+    fontFamily: ["Kanit", "Prompt"].join(","),
+  },
+});
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
-  )
+    <ThemeProvider theme={theme}>
+      <React.Fragment>
+          <Routes>
+            <Route path="admin/login" element={<LoginPage />} />
+            <Route path="admin/register" element={<RegisterPage />} />
+            <Route path="admin/dashboard" element={<DashboardPage />} />
+          </Routes>
+      </React.Fragment>
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;
