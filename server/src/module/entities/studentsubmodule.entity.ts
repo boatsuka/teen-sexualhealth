@@ -4,13 +4,14 @@ import {
     Column,
     BaseEntity,
     PrimaryGeneratedColumn,
-    OneToMany,
     ManyToOne,
+    OneToMany,
 } from 'typeorm';
+import { LearningLog } from './learninglog.entity';
 import { SubModule } from './submodule.entity';
 
 @Entity()
-export class Module extends BaseEntity {
+export class StudentSubModule extends BaseEntity {
     @PrimaryGeneratedColumn()
     student_submodule_id:number
 
@@ -26,4 +27,7 @@ export class Module extends BaseEntity {
     // student_id:number
     @ManyToOne(() => Student, student => student.student_id)
     student: Student;
+
+    @OneToMany(() => LearningLog, learninglog=>learninglog.learninglog_id)
+    learninglog:LearningLog
 }
