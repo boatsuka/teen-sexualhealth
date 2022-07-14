@@ -11,7 +11,7 @@ export class StudentService {
     @InjectRepository(Student) private studentRepository: Repository<Student>
   ) { }
 
-  async create(createStudentDto: CreateStudentDto){
+  async create(createStudentDto: CreateStudentDto) {
     return this.studentRepository.save(createStudentDto);
   }
 
@@ -20,11 +20,11 @@ export class StudentService {
   }
 
   findOne(id: number) {
-    return this.studentRepository.findOne({where: {student_id: id}});
+    return this.studentRepository.findOne({ where: { student_id: id } });
   }
 
   teacherBystudent(id: number) {
-    return this.studentRepository.findBy({teacher_id: id})
+    return this.studentRepository.find({ relations: ["teacher"], where: { teacher: { teacher_id: id } }, })
   }
 
   update(id: number, updateStudentDto: UpdateStudentDto) {

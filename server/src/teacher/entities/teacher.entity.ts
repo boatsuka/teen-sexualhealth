@@ -1,8 +1,10 @@
+import { Student } from 'src/student/entities/student.entity';
 import {
     Entity,
     Column,
     PrimaryGeneratedColumn,
     BaseEntity,
+    OneToMany,
 } from 'typeorm';
 
 @Entity()
@@ -25,6 +27,8 @@ export class Teacher extends BaseEntity {
     @Column({length: 250})
     teacher_image_path: string;
 
-    @Column()
-    school_id: number;
+    // @Column()
+    // school_id: number;
+    @OneToMany(() => Student, student => student.teacher)
+    students: Student[];
 }

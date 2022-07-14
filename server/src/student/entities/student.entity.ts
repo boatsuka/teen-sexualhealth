@@ -1,9 +1,11 @@
+import { Teacher } from 'src/teacher/entities/teacher.entity';
 import {
     Entity,
     Column,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
     BaseEntity,
+    ManyToOne,
 } from 'typeorm';
 
 @Entity('student')
@@ -41,8 +43,10 @@ export class Student extends BaseEntity {
     @Column({ default: "mp3" })
     student_name_sound_path: string;
 
-    @Column()
-    teacher_id: number;
+    // @Column()
+    // teacher_id: number;
+    @ManyToOne(() => Teacher, teacher => teacher.teacher_id)
+    teacher: Teacher;
 
     @Column()
     student_dragdrop: boolean;
