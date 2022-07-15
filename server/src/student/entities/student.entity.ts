@@ -1,4 +1,3 @@
-import { StudentSubModule } from 'src/module/entities/studentsubmodule.entity';
 import { Teacher } from 'src/teacher/entities/teacher.entity';
 import {
     Entity,
@@ -56,6 +55,4 @@ export class Student extends BaseEntity {
     @Column({ default: false })
     student_isdelete: boolean;
 
-    @OneToMany(() => StudentSubModule, studentsubmodule => studentsubmodule.student_submodule_id)
-    studentsubmodule:StudentSubModule
 }
