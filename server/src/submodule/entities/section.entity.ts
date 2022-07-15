@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { SubModule } from './submodule.entity';
 
-@Entity('student')
+@Entity('module')
 export class Section extends BaseEntity {
     @PrimaryGeneratedColumn()
     module_id: number
