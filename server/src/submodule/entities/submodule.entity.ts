@@ -5,8 +5,10 @@ import {
     BaseEntity,
     UpdateDateColumn,
     ManyToOne,
+    OneToMany,
 } from 'typeorm';
 import { Section } from './section.entity';
+import { StudentSubModule } from '../../student/entities/studentsubmodule.entity'
 
 @Entity('submodule')
 export class SubModule extends BaseEntity {
@@ -36,4 +38,6 @@ export class SubModule extends BaseEntity {
     @UpdateDateColumn()
     submodule_lastupdate: Date
 
+    @OneToMany(() => StudentSubModule, studentsubmodule => studentsubmodule.submodule)
+    studentsubmodule: StudentSubModule[]
 }
