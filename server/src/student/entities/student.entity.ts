@@ -1,4 +1,3 @@
-import { Teacher } from 'src/teacher/entities/teacher.entity';
 import {
     Entity,
     Column,
@@ -8,6 +7,8 @@ import {
     ManyToOne,
     OneToMany,
 } from 'typeorm';
+import { Teacher } from 'src/teacher/entities/teacher.entity';
+import { StudentSubModule } from './studentsubmodule.entity';
 
 @Entity('student')
 export class Student extends BaseEntity {
@@ -55,4 +56,6 @@ export class Student extends BaseEntity {
     @Column({ default: false })
     student_isdelete: boolean;
 
+    @OneToMany(() => StudentSubModule, studentsubmodule => studentsubmodule.submodule)
+    studentsubmodule: StudentSubModule[]
 }
