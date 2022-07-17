@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { ModuleService } from './module.service';
 import { SubmoduleService } from './submodule.service';
 
@@ -6,7 +6,7 @@ import { SubmoduleService } from './submodule.service';
 export class ModuleController {
     constructor(
         private readonly sectionService: ModuleService,
-        private readonly subModuleService: SubmoduleService
+        private readonly subModuleService: SubmoduleService,
     ) { }
 
     @Get()
@@ -17,5 +17,10 @@ export class ModuleController {
     @Get('/submodule')
     findAllSubModule() {
         return this.subModuleService.findAll();
+    }
+
+    @Get('/submodule/findsubmodule/:id')
+    findSubModule(@Param('id') id: number) {
+      return this.subModuleService.findSubModule(id)
     }
 }
