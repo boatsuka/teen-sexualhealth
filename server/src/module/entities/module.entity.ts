@@ -1,4 +1,3 @@
-import { SubModule } from 'src/submodule/entities/submodule.entity';
 import {
     Entity,
     Column,
@@ -6,6 +5,7 @@ import {
     BaseEntity,
     OneToMany,
 } from 'typeorm';
+import { SubModule } from './submodule.entity';
 
 @Entity('module')
 export class Section extends BaseEntity {
