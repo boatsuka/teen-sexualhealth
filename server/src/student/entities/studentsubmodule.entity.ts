@@ -1,5 +1,4 @@
-import { LearningLog } from "src/submodule/entities/lerninglog.entity";
-import { SubModule } from "src/submodule/entities/submodule.entity";
+import { SubModule } from "src/module/entities/submodule.entity";
 import { BaseEntity, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Student } from "./student.entity";
 
@@ -11,8 +10,8 @@ export class StudentSubModule extends BaseEntity {
     @Column()
     student_submodule_status: number
 
-    @Column()
-    student_submodule_progress: number
+    // @Column()
+    // student_submodule_progress: number
 
     // @Column()
     // submodule_id: number
@@ -24,6 +23,6 @@ export class StudentSubModule extends BaseEntity {
     @ManyToOne(() => Student, student => student.student_id)
     student: Student
 
-    @OneToMany(()=> LearningLog, learningLog=> learningLog.learninglog_id)
-    learningLog : LearningLog[]
+    // @OneToMany(() => LearningLog, learningLog => learningLog.learninglog_id)
+    // learningLog: LearningLog[]
 }
